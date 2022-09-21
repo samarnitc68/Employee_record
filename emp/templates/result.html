@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <body>
 
@@ -7,9 +7,40 @@
 <p>data</p>
 {% for key, value in data.items() %}
 <tr>
+<td><b>{{key}}</b></td>
 <td><b>{{value}}</b></td>
 </tr>
 {% endfor %}
 
 </body>
+</html> -->
+<!DOCTYPE html>
+<html>
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='showrecord.css') }}">
+
+<body>
+
+<h2>Record in Databse</h2>
+<table class="container">
+	<thead>
+		<tr>
+			<th><h1>Department</h1></th>
+			<th><h1>No. Employee</h1></th>
+		</tr>
+	</thead>
+  <tbody>
+    {% for key,item in data.items() %}
+<tr>
+  <td>{{key }}</td>
+  <td>{{item }}</td>
+</tr>
+    {% endfor %}
+</tbody>
+</table>
+
+</body>
 </html>
+    
+
+

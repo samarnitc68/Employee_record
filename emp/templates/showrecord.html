@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html>
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='showrecord.css') }}">
+
 <body>
 
 <h2>Record in Databse</h2>
-{% for item in data %}
-<tr>
-    <td><b>{{item}}</b></td><br>
-</tr><br>
-{% endfor %}
-
-
+<table class="container">
+	<thead>
+		<tr>
+			<th><h1>Id</h1></th>
+			<th><h1>First Name</h1></th>
+			<th><h1>Last Name</h1></th>
+			<th><h1>Department</h1></th>
+            <th><h1>D.O.J</h1></th>
+            <th><h1>L.W.D</h1></th>
+		</tr>
+	</thead>
+    
+    <tbody>
+        {% for item in data %}
+		<tr>
+			<td>{{ item.id}}</td>
+			<td>{{ item.fname }}</td>
+			<td>{{ item.lname }}</td>
+			<td>{{ item.dept }}</td>
+            <td>{{ item.doj }}</td>
+            <td>{{ item.eod }}</td>
+		</tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    
 </body>
 </html>

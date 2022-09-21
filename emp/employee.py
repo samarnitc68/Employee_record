@@ -43,7 +43,7 @@ def showrecord():
     x=db.employee.find({},{'_id':0})
     for record in x:
         l.append(record)
-        # print(type(record))
+        print(type(record))
     return render_template('showrecord.html',data=l)
 
 # Enter department to find total employee working in perticular department
@@ -58,14 +58,14 @@ def countdept():
     data ={}
     department = ['it', 'python developer', 'devops', 'testing','hr']
     if request.method =="POST":
-        data['dept'] = request.form['dept']
-        if data['dept'] not in department:
-            return 'data not found'
+        val = request.form['dept']
+        if val not in department:
+            return '<h1> Data not found <h1>'
         x=db.employee.find({"dept":request.form['dept']})
         if x:
-            print('enter')
-            x=db.employee.count_documents({"dept":{"$eq":data['dept']}})
-            data[data['dept']] = x
+            x=db.employee.count_documents({"dept":{"$eq":val}})
+            data[val] = x
+            print(data)
             return render_template('result.html',data =data)
     
     else:
@@ -94,14 +94,14 @@ def empwithcondition():
                 l.append(p)
             
             if len(l):   
-                return render_template('conditiondata.html',data =l)
+                return render_template('showrecord.html',data =l)
         elif data['val'] == ("upper"):
             l=[]
             x=db.employee.find({"fname":request.form['name'].upper()})
             for p in x:
                 l.append(p)
             if len(l):
-                return render_template('conditiondata.html',data =l)
+                return render_template('showrecord.html',data =l)
 
         elif data['val'] == ("lower"):
             l=[]
@@ -109,7 +109,7 @@ def empwithcondition():
             for p in x:
                 l.append(p)
             if len(l):
-                return render_template('conditiondata.html',data =l)
+                return render_template('showrecord.html',data =l)
         elif data['val'] == ("startwith"):
             l=[]
             myquery = { "fname": { "$regex": "^"+request.form['name'] } }
@@ -117,7 +117,7 @@ def empwithcondition():
             for p in x:
                 l.append(p)
             if len(l):    
-                return render_template('conditiondata.html',data =l)
+                return render_template('showrecord.html',data =l)
         else:
             l=[]
             myquery = { "lname": { "$regex": request.form['name']+"$" } }
@@ -125,13 +125,13 @@ def empwithcondition():
             for p in x:
                 l.append(p)
             if len(l):
-                return render_template('conditiondata.html',data =l)
+                return render_template('showrecord.html',data =l)
 
 
 
 
 
-    return "data not found"  
+    return "<h1>data not found<h1>"  
 
 #driver code 
 
